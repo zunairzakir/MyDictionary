@@ -9,3 +9,27 @@
     margin-top: 8px;
     display: inline;
 }
+.nav-length{
+    width: auto;
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+/*
+    display: inline-block;
+    width: 500px;
+
+    vertical-align: middle;
+*/
+}
+.input-length{
+    width: 500px;
+}
+@media (max-width: 768px){
+    .input-length{
+        width: 200px;
+    }
+}

@@ -8,27 +8,63 @@
     <link rel="stylesheet" href="../../MyDictionary/css/myDictionary.css"/>
 </head>
 <body ng-app="dictionaryApp">
-<div class="container" ng-controller="dictionaryCtrl">
-    <div class="navbar navbar-fixed-top navbar-fixed-top navbar-inverse">
-        <div class='container-fluid'>
-            <h3 style="color: white;display: inline">My Dictionary </h3><input type="text" ng-model="selected" typeahead-on-select="onSelect($model)"  typeahead="dictionayName for dictionayName in wordList | filter:$viewValue | limitTo:8" class="form-control search-bar"><button style="margin-left: 11px;margin-bottom: 4px;" class="btn btn-primary" ng-click="searchBy = {name:'Phrase'}"  data-target="#imagePanel" data-toggle="modal">Search By Phrase</button><button style="margin-left: 11px;margin-bottom: 4px;" class="btn btn-primary"  data-target="#imagePanel"ng-click="searchBy = {name:'Alphabets'}" data-toggle="modal">Search By Alphabets</button>
+<div ng-controller="dictionaryCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">My Dictionary</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="nav-length navbar-left" role="search">
+                    <div class="form-group" style="display: inline-block;margin-top: 10px;">
+                        <input type="text" placeholder="Enter Your Word .." ng-model="selected" typeahead-on-select="onSelect($model)"  typeahead="dictionayName for dictionayName in wordList | filter:$viewValue | limitTo:8" class="input-length form-control "><span class="glyphicon glyphicon-search form-control-feedback" style="position: absolute;margin-left: -22px;margin-top: 16px;transition: 3s"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary glyphicon glyphicon-search" style="height: 37px;margin-bottom: 4px;"></button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a  ng-click="searchBy = {name:'Phrase'}"  data-target="#imagePanel" data-toggle="modal">Search By Phrase</a></li>
+                    <li><a  data-target="#imagePanel"ng-click="searchBy = {name:'Alphabets'}" data-toggle="modal">Search By Alphabets</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+   <!-- <div class="row">
+        <div class="navbar navbar-fixed-top navbar-fixed-top navbar-inverse">
+            <div class='container-fluid col-sm-8 col-lg-5 col-md-5'>
+                <h3 style="color: white;display: inline" class="col-lg-1 col-md-2 col-sm-2 col-xs-1">My Dictionary </h3>
+                <input type="text" placeholder="Enter Your Word .." ng-model="selected" typeahead-on-select="onSelect($model)"  typeahead="dictionayName for dictionayName in wordList | filter:$viewValue | limitTo:8" class="form-control col-sm-4 col-lg-4 col-md-6"><span class="glyphicon glyphicon-search form-control-feedback" style="position: absolute;margin-left: -22px;margin-top: 16px;transition: 3s"></span>
+                <div class="col-lg-3">
+                    <button style="margin-left: 11px;margin-bottom: 4px;" class="btn btn-primary" ng-click="searchBy = {name:'Phrase'}"  data-target="#imagePanel" data-toggle="modal">Search By Phrase</button>
+                    <button style="margin-left: 11px;margin-bottom: 4px;" class="btn btn-primary"  data-target="#imagePanel"ng-click="searchBy = {name:'Alphabets'}" data-toggle="modal">Search By Alphabets</button>
+                </div>
+            </div>
         </div>
+    </div>-->
+
+    <div class="modal fade " id="imagePanel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm model-width">
+            <div class="panel panel-primary panal-aside">
+                <div class="panel-heading font17"><span class="glyphicon glyphicon-search padright5"></span>
+                    Search By {{searchBy.name}}
+                </div>
+                <div style="min-height: 100px; height: auto;background-color: #F0F8FF;">
+                    <input type="text" ng-model="phraseSelected" typeahead-on-select="onPhraseSelect($model)"  style="margin-left: 60px" typeahead="phrase for phrase in phraseList | filter:$viewValue | limitTo:8" class="form-control search-bar"><button class="btn btn-primary"  style="margin-left: 2px;margin-bottom: 4px;"><span class="glyphicon glyphicon-search padright5"></span></button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
-<div class="modal fade " id="imagePanel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm model-width">
-        <div class="panel panel-primary panal-aside">
-            <div class="panel-heading font17"><span class="glyphicon glyphicon-search padright5"></span>
-                Search By {{searchBy.name}}
-            </div>
-            <div style="min-height: 100px; height: auto;background-color: #F0F8FF;">
-                <input type="text" ng-model="phraseSelected" typeahead-on-select="onPhraseSelect($model)"  style="margin-left: 60px" typeahead="phrase for phrase in phraseList | filter:$viewValue | limitTo:8" class="form-control search-bar"><button class="btn btn-primary"  style="margin-left: 2px;margin-bottom: 4px;"><span class="glyphicon glyphicon-search padright5"></span></button>
-            </div>
-    </div>
-</div>
-
-</div>
 </div>
 <script src="../../MyDictionary/js/jquery-2.1.1.min.js"></script>
 <script src="../../MyDictionary/js/angular.min.js"></script>
